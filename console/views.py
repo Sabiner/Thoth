@@ -9,5 +9,14 @@ from django.http.response import HttpResponse
 
 class Index(View):
     def get(self, request, *args, **kwargs):
-        #return HttpResponse('hello world')
-        return render_to_response('index/index.html', {'index': 'Hello world'})
+        return render_to_response('index/index.html')
+
+
+class Tags(View):
+    def get(self, request, *args, **kwargs):
+        return render_to_response('tags/tags.html')
+
+
+class Blog(View):
+    def get(self, request, *args, **kwargs):
+        return render_to_response('blog/blog.html')
