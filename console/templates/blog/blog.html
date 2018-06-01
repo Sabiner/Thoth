@@ -6,68 +6,22 @@
     <div class="layui-row">
         <div class="layui-col-xs3 layui-col-md3">
             <ul class="layui-tree" style="width: 45%; float:right; margin-right:35%">
-                <li >
-                    <h2 style="line-height: 36px; border-left: 5px solid #009E94; margin: 15px 0 5px; padding: 0 10px; background-color: #f2f2f2;">Python相关</h2>
-                </li>
-                <li class="site-tree-noicon ">
-                    <a href="/doc/"><cite>元类介绍</cite></a>
-                </li>
-                <li class="site-tree-noicon ">
-                    <a href="/doc/element/icon.html"><cite>类创建过程中的魔法函数</cite></a>
-                </li>
-                <li class="site-tree-noicon ">
-                    <a href="/doc/element/anim.html"><cite>Socket套接字通信</cite></a>
-                </li>
-
-                <li class="site-tree-noicon ">
-                    <a href="/doc/element/button.html"><cite>TCP协议</cite></a>
-                </li>
-                <li class="site-tree-noicon ">
-                    <a href="/doc/element/form.html"><cite>IP协议</cite></a>
-                </li>
-                <li class="site-tree-noicon layui-this">
-                    <a href="/doc/element/nav.html"><cite>多线程异步</cite></a>
-                </li>
-                <li class="site-tree-noicon ">
-                    <a href="/doc/element/tab.html"><cite>Gevent并发处理</cite></a>
-                </li>
-                <li class="site-tree-noicon ">
-                    <a href="/doc/element/progress.html"><cite>Python中的数据结构</cite></a>
-                </li>
-                <li class="site-tree-noicon ">
-                    <a href="/doc/element/panel.html"><cite>ORM</cite></a>
-                </li>
-                <li class="site-tree-noicon ">
-                    <a href="/doc/element/table.html"><cite>Python的垃圾回收</cite></a>
-                </li>
-                <li class="site-tree-noicon ">
-                    <a href="/doc/element/table.html"><cite>更多 >>></cite></a>
-                </li>
-
-                <li >
-                    <h2 style="line-height: 36px; border-left: 5px solid #009E94; margin: 15px 0 5px; padding: 0 10px; background-color: #f2f2f2;">Linux相关</h2>
-                </li>
-                <li class="site-tree-noicon ">
-                    <a href="/doc/"><cite>RAID相关指令</cite></a>
-                </li>
-                <li class="site-tree-noicon ">
-                    <a href="/doc/element/icon.html"><cite>SCST相关指令</cite></a>
-                </li>
-                <li class="site-tree-noicon ">
-                    <a href="/doc/element/icon.html"><cite>PCS集群管理</cite></a>
-                </li>
-                <li class="site-tree-noicon ">
-                    <a href="/doc/element/icon.html"><cite>LVM</cite></a>
-                </li>
-                <li class="site-tree-noicon ">
-                    <a href="/doc/element/icon.html"><cite>Linux中的文件系统</cite></a>
-                </li>
-                <li class="site-tree-noicon ">
-                    <a href="/doc/element/table.html"><cite>更多 >>></cite></a>
-                </li>
+                {% for article_type, article_titles in articles.iteritems %}
+                    <li >
+                        <h2 style="line-height: 36px; border-left: 5px solid #009E94; margin: 15px 0 5px; padding: 0 10px; background-color: #f2f2f2;">{{ article_type }}</h2>
+                    </li>
+                    {% for article_title in article_titles %}
+                        <li class="site-tree-noicon ">
+                            <a href="/doc/element/table.html"><cite>{{ article_title }}</cite></a>
+                        </li>
+                    {% endfor %}
+                    <li class="site-tree-noicon ">
+                        <a href="/doc/element/table.html"><cite>更多 >>></cite></a>
+                    </li>
+                {% endfor %}
             </ul>
         </div>
-        <div class="layui-col-xs12 layui-col-md4">
+        <div class="layui-col-xs12 layui-col-md8">
             <ul class="layui-timeline">
                 <li class="layui-timeline-item">
                     <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
@@ -111,12 +65,6 @@
                     </div>
                 </li>
             </ul>
-        </div>
-        <div class="layui-col-xs3 layui-col-md4">
-            <div style="float: right">
-                <span id="testView"></span>
-                <div id="test2"></div>
-            </div>
         </div>
     </div>
 </div>
