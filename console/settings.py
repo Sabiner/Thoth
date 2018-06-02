@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'console',
+    'apps.blog',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -96,4 +97,3 @@ STATICFILES_FINDERS = [
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
-

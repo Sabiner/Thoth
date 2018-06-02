@@ -36,11 +36,10 @@ class ArticleService(object):
         blog_information = dict()
         for article in articles:
             _type = article.get('type')
-            title = article.get('title')
 
             if _type not in blog_information:
-                blog_information[_type] = [title]
+                blog_information[_type] = [article]
             else:
-                blog_information[_type].append(title)
+                blog_information[_type].append(article)
 
         return blog_information

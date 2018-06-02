@@ -10,18 +10,18 @@
                     <li >
                         <h2 style="line-height: 36px; border-left: 5px solid #009E94; margin: 15px 0 5px; padding: 0 10px; background-color: #f2f2f2;">{{ article_type }}</h2>
                     </li>
-                    {% for article_title in article_titles %}
+                    {% for article in article_titles %}
                         <li class="site-tree-noicon ">
-                            <a href="/doc/element/table.html"><cite>{{ article_title }}</cite></a>
+                            <a onclick="javascript:showArticle('{{ article.url }}');"><cite>{{ article.title }}</cite></a>
                         </li>
                     {% endfor %}
                     <li class="site-tree-noicon ">
-                        <a href="/doc/element/table.html"><cite>更多 >>></cite></a>
+                        <a href="/more/{{ article.id }}"><cite>更多 >>></cite></a>
                     </li>
                 {% endfor %}
             </ul>
         </div>
-        <div class="layui-col-xs12 layui-col-md8">
+        <div class="layui-col-xs12 layui-col-md8" id="blog_content">
             <ul class="layui-timeline">
                 <li class="layui-timeline-item">
                     <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
@@ -75,22 +75,11 @@
     });
     layui.use('carousel', function(){
         var carousel = layui.carousel;
-        //建造实例
         carousel.render({
             elem: '#man',
-            width: '100%',  //设置容器宽度
-            arrow: 'always' //始终显示箭头
-        });
-    });
-    layui.use('laydate', function(){
-        var laydate = layui.laydate;
-
-        laydate.render({
-            elem: '#test2'
-            ,position: 'static'
-            ,change: function(value, date){ //监听日期被切换
-
-            }
+            width: '100%',
+            arrow: 'always'
         });
     });
 </script>
+<script src="{% static 'js/blog/blog.manage.js' %}"></script>

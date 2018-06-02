@@ -13,6 +13,7 @@ class Article(models.Model):
     title = models.CharField(max_length=50)
     create_time = models.DateTimeField()
     creator = models.CharField(max_length=30)
+    url = models.CharField(max_length=20)
     content = models.TextField()
 
     def __str__(self):
