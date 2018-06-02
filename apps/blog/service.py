@@ -1,6 +1,9 @@
 # coding=utf-8
 
 from models import Article
+from console.common.logger import getLogger
+
+log = getLogger()
 
 
 class ArticleService(object):
@@ -12,9 +15,9 @@ class ArticleService(object):
         pass
 
     @classmethod
-    def create(cls, _type, title, create_time, creator, content):
+    def create(cls, _type, title, create_time, creator, content, url):
         try:
-            args = (_type, title, create_time, creator, content)
+            args = (_type, title, create_time, creator, content, url)
             for arg in args:
                 assert arg is not None
         except AssertionError, e:
@@ -25,7 +28,8 @@ class ArticleService(object):
                 title=title,
                 create_time=create_time,
                 creator=creator,
-                content=content
+                content=content,
+                url=url
             )
             article.save()
             return True
@@ -43,3 +47,15 @@ class ArticleService(object):
                 blog_information[_type].append(article)
 
         return blog_information
+
+    @classmethod
+    def get_blog_by_url(cls, url):
+        try:
+            assert url is not None
+        except AssertionError, e:
+            return False
+
+        blog = Article.objects.get(url=url)
+        blog = blog.__str__()
+
+        return blog

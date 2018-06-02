@@ -4,7 +4,7 @@ Index view
 """
 from django.views.generic import View
 from django.shortcuts import render_to_response
-from service import ArticleService
+from apps.blog.service import ArticleService
 
 
 class Index(View):

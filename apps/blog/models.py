@@ -1,7 +1,7 @@
 # coding=utf-8
 
 from django.db import models
-from common.decorator import get_none_if_no_value
+from console.common.decorator import get_none_if_no_value
 
 
 class Article(models.Model):
@@ -17,7 +17,15 @@ class Article(models.Model):
     content = models.TextField()
 
     def __str__(self):
-        return self.type, self.title, self.create_time, self.creator
+        obj = {
+            'type': self.type,
+            'title': self.title,
+            'create_time': self.create_time,
+            'creator': self.creator,
+            'content': self.content,
+            'url': self.url
+        }
+        return obj
 
     @classmethod
     @get_none_if_no_value
