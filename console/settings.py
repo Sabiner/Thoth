@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_markdown',
     'console',
     'apps.blog',
 )
@@ -97,3 +98,5 @@ STATICFILES_FINDERS = [
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
+
+MARKDOWN_EDITOR_SKIN = 'simple'

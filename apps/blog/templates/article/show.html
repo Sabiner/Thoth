@@ -1,3 +1,11 @@
 {% load staticfiles %}
 
-<h2>{{ blog }}</h2>
+<h1>{{ blog.title }}</h1>
+<i class="layui-icon layui-icon-username" style="font-size: 30px;"></i>
+{{ blog.creator }}
+<p>{{ blog.content }}</p>
+
+<hr />
+<textarea name="test" id="new"></textarea>
+{% markdown_editor "#new" %}
+{% markdown_media %}

@@ -2,6 +2,7 @@
 
 from django.db import models
 from console.common.decorator import get_none_if_no_value
+from django_markdown.models import MarkdownField
 
 
 class Article(models.Model):
@@ -14,7 +15,7 @@ class Article(models.Model):
     create_time = models.DateTimeField()
     creator = models.CharField(max_length=30)
     url = models.CharField(max_length=20)
-    content = models.TextField()
+    content = MarkdownField()
 
     def __str__(self):
         obj = {
