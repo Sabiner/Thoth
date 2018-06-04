@@ -2,10 +2,6 @@
 
 <h1>{{ blog.title }}</h1>
 <i class="layui-icon layui-icon-username" style="font-size: 30px;"></i>
-{{ blog.creator }}
-<p>{{ blog.content }}</p>
-
+Oct 27, 2018 Saturday By {{ blog.creator }}
 <hr />
-<textarea name="test" id="new"></textarea>
-{% markdown_editor "#new" %}
-{% markdown_media %}
+<p>{{ blog.content }}</p>

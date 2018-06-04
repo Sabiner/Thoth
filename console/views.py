@@ -3,18 +3,20 @@
 Index view
 """
 from django.views.generic import View
-from django.shortcuts import render_to_response
+from django.shortcuts import render
+from django.template.loader import render_to_string
+
 from apps.blog.service import ArticleService
 
 
 class Index(View):
     def get(self, request, *args, **kwargs):
-        return render_to_response('index/index.html')
+        return render(request, 'index/index.html')
 
 
 class Tags(View):
     def get(self, request, *args, **kwargs):
-        return render_to_response('tags/tags.html')
+        return render(request, 'tags/tags.html')
 
 
 class Blog(View):
@@ -23,4 +25,4 @@ class Blog(View):
         params = {
             'articles': articles
         }
-        return render_to_response('blog/blog.html', params)
+        return render(request, 'blog/blog.html', params)
