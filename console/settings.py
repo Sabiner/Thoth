@@ -1,3 +1,4 @@
+# coding=utf-8
 """
 Django settings for console project.
 
@@ -24,7 +25,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -36,6 +37,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mdeditor',
+    'markdown_deux',
     'console',
     'apps.blog',
 )
@@ -81,13 +84,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static')
+
+MEDIA_ROOT = os.path.join(os.path.join(BASE_DIR, "statics"), 'uploads')
+
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "statics"),
 )
-
-STATIC_ROOT = '/usr/local/projects/statics'
 
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -114,5 +120,3 @@ TEMPLATES = [{
         ],
     },
 }]
-
-ALLOWED_HOSTS = ['*',]

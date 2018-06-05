@@ -56,6 +56,6 @@ class ArticleService(object):
             return False
 
         blog = Article.objects.get(url=url)
-        blog = blog.__str__()
+        blog = blog.to_dict()
 
         return blog

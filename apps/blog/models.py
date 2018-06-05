@@ -2,6 +2,7 @@
 
 from django.db import models
 from console.common.decorator import get_none_if_no_value
+from mdeditor.fields import MDTextField
 
 
 class Article(models.Model):
@@ -14,9 +15,12 @@ class Article(models.Model):
     create_time = models.DateTimeField()
     creator = models.CharField(max_length=30)
     url = models.CharField(max_length=20)
-    content = models.TextField()
+    content = MDTextField()
 
     def __str__(self):
+        return self.title
+
+    def to_dict(self):
         obj = {
             'type': self.type,
             'title': self.title,
