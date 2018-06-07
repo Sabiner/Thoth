@@ -18,7 +18,7 @@ class Article(models.Model):
     content = MDTextField()
 
     def __str__(self):
-        return self.title
+        return self.title.encode('utf-8')
 
     def to_dict(self):
         obj = {
