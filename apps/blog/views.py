@@ -27,8 +27,6 @@ class Article(View):
             'markdown.extensions.codehilite',
             'markdown.extensions.toc',
         ])
-        params = {
-            'blog': blog
-        }
 
+        params = {'blog': blog}
         return render_to_response('article/show.html', params)

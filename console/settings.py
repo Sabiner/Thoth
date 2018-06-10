@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'markdown_deux',
     'console',
     'apps.blog',
+    'apps.account',
 )
 
 MIDDLEWARE_CLASSES = (

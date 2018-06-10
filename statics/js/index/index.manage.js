@@ -2,11 +2,15 @@
 
 $(function() {
     $("#get_tags").click(function () {
-        url = "/load_tags_info";
+        var url = "/load_tags_info";
         load_page(url);
     });
     $("#blog").click(function () {
-        url = "/load_blog_page";
+        var url = "/load_blog_page";
+        load_page(url);
+    });
+    $("#feedback").click(function () {
+        var url = "/feedback";
         load_page(url);
     });
 });

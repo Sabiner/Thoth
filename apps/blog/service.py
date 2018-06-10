@@ -48,6 +48,9 @@ class ArticleService(object):
 
         return blog_information
 
+    def get_directory(self):
+        Article.get_all_info()
+
     @classmethod
     def get_blog_by_url(cls, url):
         try:
