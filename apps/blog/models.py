@@ -19,10 +19,12 @@ class Article(models.Model):
 
     type = models.CharField(max_length=50)
     title = models.CharField(max_length=50)
-    create_time = models.DateTimeField()
+    create_time = models.DateTimeField(auto_now_add=True)
     creator = models.CharField(max_length=30)
     url = models.CharField(max_length=20)
     content = MDTextField()
+
+    list_display = ('type', 'title', 'create_time', 'creator', 'url')
 
     def __str__(self):
         return self.title.encode('utf-8')
@@ -30,11 +32,11 @@ class Article(models.Model):
     def save(self, *args, **kwargs):
         article_path = os.path.join(conf.get('article', 'path'), self.url)
         with open(article_path, 'w') as f:
-            f.write(self.content)
+            f.write(self.content.encode('utf-8'))
 
         self.content = article_path
         super(Article, self).save(*args, **kwargs)
-
+    
     def to_dict(self):
         content = self.content
         if os.path.exists(self.content):

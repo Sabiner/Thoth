@@ -1,6 +1,8 @@
 # coding=utf-8
 
 import markdown
+import chardet
+
 from django.views.generic import View
 from console.common.logger import getLogger
 from django.shortcuts import render_to_response
@@ -22,7 +24,8 @@ class Article(View):
         if url:
             blog = ArticleService.get_blog_by_url(url)
 
-        blog['content'] = markdown.markdown(blog['content'], extensions=[
+        content = unicode(blog['content'], 'utf-8')
+        blog['content'] = markdown.markdown(content, extensions=[
             'markdown.extensions.extra',
             'markdown.extensions.codehilite',
             'markdown.extensions.toc',
