@@ -57,3 +57,22 @@ class Article(models.Model):
     def get_all_info(cls):
         articles = cls.objects.all()
         return articles.values()
+
+    @classmethod
+    def get_filter_article(cls, order=list(), limit=list()):
+        articles = None
+        try:
+            all_article = Article.objects.all()
+            if order:
+                all_article.query.group_by = order
+                articles = all_article
+
+            if limit and len(limit) == 2:
+                articles = all_article[limit[0]: limit[-1]]
+
+            if articles:
+                articles = articles.values()
+            return articles
+        except Exception, e:
+            log.debug(e)
+            return None

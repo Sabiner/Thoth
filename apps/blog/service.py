@@ -1,5 +1,7 @@
 # coding=utf-8
 
+import os
+import copy
 from models import Article
 from console.common.logger import getLogger
 
@@ -36,9 +38,28 @@ class ArticleService(object):
 
     @classmethod
     def get(cls):
-        articles = Article.get_all_info()
-        blog_information = dict()
+        # not need get all, so waste memory.
+
+        # articles = Article.get_all_info()
+        articles = Article.get_filter_article(order=['create_time'], limit=[0, 10])
+        
+        menu_articles = []
+
+        blog_information = {
+            'news': list()
+        }
+
         for article in articles:
+            article['create_time'] = article['create_time'].strftime("%Y-%m-%d %H:%M:%S")
+
+            content_path = copy.copy(article['content'])
+            if os.path.exists(content_path):
+                with open(content_path, 'r') as f:
+                    article['content'] = f.read()
+
+            blog_information['news'].append(article)
+
+        for article in menu_articles:
             _type = article.get('type')
 
             if _type not in blog_information:
@@ -47,9 +68,6 @@ class ArticleService(object):
                 blog_information[_type].append(article)
 
         return blog_information
-
-    def get_directory(self):
-        Article.get_all_info()
 
     @classmethod
     def get_blog_by_url(cls, url):
