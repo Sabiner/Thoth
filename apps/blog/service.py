@@ -38,34 +38,27 @@ class ArticleService(object):
 
     @classmethod
     def get(cls):
-        # not need get all, so waste memory.
+        all_types = list()
+        blog_information = {'news': list()}
 
-        # articles = Article.get_all_info()
-        articles = Article.get_filter_article(order=['create_time'], limit=[0, 10])
-        
-        menu_articles = []
+        articles = Article.objects.all().order_by('-create_time')[0: 10]
+        all_type = Article.objects.values('type').distinct()
+        for _type in all_type:
+            all_types.append(_type.get('type'))
 
-        blog_information = {
-            'news': list()
-        }
+        for _type in all_types:
+            belongs_articles = Article.objects.filter(type=_type).order_by('-create_time')[0: 10]
+            blog_information[_type] = belongs_articles
 
         for article in articles:
-            article['create_time'] = article['create_time'].strftime("%Y-%m-%d %H:%M:%S")
+            article.create_time = article.create_time.strftime("%Y-%m-%d %H:%M:%S")
 
-            content_path = copy.copy(article['content'])
+            content_path = copy.copy(article.content)
             if os.path.exists(content_path):
                 with open(content_path, 'r') as f:
-                    article['content'] = f.read()
+                    article.content = f.read()
 
             blog_information['news'].append(article)
-
-        for article in menu_articles:
-            _type = article.get('type')
-
-            if _type not in blog_information:
-                blog_information[_type] = [article]
-            else:
-                blog_information[_type].append(article)
 
         return blog_information
 

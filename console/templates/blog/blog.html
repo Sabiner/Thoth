@@ -29,9 +29,10 @@
                         <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
                         <div class="layui-timeline-content layui-text">
                             <h3 class="layui-timeline-title">{{ article.create_time }}</h3>
-                            <p>
-                                {{ article.title }}<br>
-                                {{ article.content }}</p>
+                            <p>{{ article.title }}</p>
+                            <p style="overflow: hidden; text-overflow: ellipsis; display:
+                            -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">{{ article.description }}</p>
+                            <a href="javascript:showArticle('{{ article.url }}');"> 查看更多 >>> </a>
                         </div>
                     </li>
                 {% endfor %}
