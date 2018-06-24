@@ -33,3 +33,21 @@ class Article(View):
 
         params = {'blog': blog}
         return render_to_response('article/show.html', params)
+
+
+class Tag(View):
+
+    def get(self, *args, **kwargs):
+        params = dict()
+
+        path_info = args[0].get_full_path()
+        _type = path_info.split('=')[-1]
+
+        start = 0
+        end = 12
+
+        params['type'] = _type
+        articles = ArticleService.get_blog_by_type(_type, start, end)
+
+        params['articles'] = articles
+        return render_to_response('tag/show.html', params)

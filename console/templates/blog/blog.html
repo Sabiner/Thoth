@@ -12,11 +12,11 @@
                         </li>
                         {% for article in article_titles %}
                             <li class="site-tree-noicon ">
-                                <a onclick="javascript:showArticle('{{ article.url }}');"><cite>{{ article.title }}</cite></a>
+                                <a href="javascript:showArticle('{{ article.url }}');"><cite>{{ article.title }}</cite></a>
                             </li>
                         {% endfor %}
                         <li class="site-tree-noicon ">
-                            <a href="/more/{{ article.id }}"><cite>更多 >>></cite></a>
+                            <a href="javascript: showTag('{{ article_type }}');"><cite>更多 >>></cite></a>
                         </li>
                     {% endif %}
                 {% endfor %}
@@ -40,8 +40,17 @@
         </div>
     </div>
 </div>
-
+<ul class="layui-fixbar">
+    <li class="layui-icon layui-icon-chat" onclick="javascript:chat();"></li>
+    <li class="layui-icon layui-icon-top" id="top" style="display: none" onclick="javascript:turn_top();"></li>
+</ul>
 <script>
+    function turn_top(){
+        scrollTo(0,0);
+    }
+    function chat(){
+        alert("敬请期待！");
+    }
     layui.use('element', function(){
         var element = layui.element;
     });
@@ -52,6 +61,13 @@
             width: '100%',
             arrow: 'always'
         });
+    });
+    $(document).scroll(function () {
+        if ($(document).scrollTop() > 0) {
+            $("#top").show();
+        } else {
+            $("#top").hide();
+        }
     });
 </script>
 <script src="{% static 'js/blog/blog.manage.js' %}"></script>

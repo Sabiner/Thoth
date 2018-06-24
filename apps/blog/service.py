@@ -39,18 +39,20 @@ class ArticleService(object):
     @classmethod
     def get(cls):
         all_types = list()
-        blog_information = {'news': list()}
+        information = {
+            'news': list()
+        }
 
-        articles = Article.objects.all().order_by('-create_time')[0: 10]
         all_type = Article.objects.values('type').distinct()
         for _type in all_type:
             all_types.append(_type.get('type'))
 
         for _type in all_types:
-            belongs_articles = Article.objects.filter(type=_type).order_by('-create_time')[0: 10]
-            blog_information[_type] = belongs_articles
+            articles_a_type = Article.objects.filter(type=_type).order_by('-create_time')[0: 10]
+            information[_type] = articles_a_type
 
-        for article in articles:
+        all_article = Article.objects.all().order_by('-create_time')[0: 10]
+        for article in all_article:
             article.create_time = article.create_time.strftime("%Y-%m-%d %H:%M:%S")
 
             content_path = copy.copy(article.content)
@@ -58,18 +60,34 @@ class ArticleService(object):
                 with open(content_path, 'r') as f:
                     article.content = f.read()
 
-            blog_information['news'].append(article)
+            information['news'].append(article)
 
-        return blog_information
+        return information
 
     @classmethod
     def get_blog_by_url(cls, url):
         try:
             assert url is not None
         except AssertionError, e:
+            log.debug(e)
             return False
 
         blog = Article.objects.get(url=url)
         blog = blog.to_dict()
 
         return blog
+
+    @classmethod
+    def get_blog_by_type(cls, _type, start, end):
+        try:
+            assert isinstance(start, int)
+            assert isinstance(end, int)
+        except AssertionError, e:
+            log.debug(e)
+            return False
+
+        articles = Article.objects.filter(type=_type).order_by('-create_time')[start: end]
+        for article in articles:
+            article.create_time = article.create_time.strftime("%Y-%m-%d %H:%M:%S")
+
+        return articles
