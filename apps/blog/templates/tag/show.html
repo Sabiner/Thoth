@@ -40,7 +40,7 @@
                 {% for article in articles %}
                     <tr>
                         <td>{{ forloop.counter }}</td>
-                        <td>{{ article.title }}</td>
+                        <td><a href="javascript:showArticle('{{ article.url }}');">{{ article.title }}</a></td>
                         <td>{{ article.type }}</td>
                         <td>{{ article.creator }}</td>
                         <td>{{ article.create_time }}</td>
@@ -48,7 +48,6 @@
                 {% endfor %}
                 </tbody>
             </table>
-
 
             <div id="take_pages"></div>
         </div>
@@ -64,10 +63,10 @@
     layui.use('laypage', function () {
         var laypage = layui.laypage;
 
-        //执行一个laypage实例
         laypage.render({
             elem: 'take_pages' //注意，这里的 test1 是 ID，不用加 # 号
             , count: 50 //数据总数，从服务端得到
         });
     });
 </script>
+<script src="{% static 'js/blog/blog.manage.js' %}"></script>

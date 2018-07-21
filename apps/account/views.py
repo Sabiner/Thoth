@@ -14,4 +14,4 @@ class FeedBack(View):
         return render_to_response('feedback/feedback.html')
 
     def post(self):
-        pass
+        return render_to_response('feedback/feedback.html')
