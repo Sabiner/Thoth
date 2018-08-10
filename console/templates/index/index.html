@@ -21,8 +21,8 @@
             <dd><a href="javascript:;">修改信息</a></dd>
         </dl>
     </li>
-    <li class="layui-nav-item layui-this" style="float: right"><a id="get_tags">标签</a></li>
-    <li class="layui-nav-item" style="float: right">
+    <li class="layui-nav-item" style="float: right"><a id="get_tags">标签</a></li>
+    <li class="layui-nav-item layui-this" style="float: right">
         <a id="blog">博客中心</a>
     </li>
     <li class="layui-nav-item" style="float: right"><a id="feedback">反馈</a></li>
@@ -35,6 +35,6 @@
 <script src="{% static 'js/jquery-1.7.1.min.js' %}"></script>
 <script src="{% static 'js/index/index.manage.js' %}"></script>
 <script>
-    var url = "/load_tags_info";
+    var url = "/load_blog_page";
     load_page(url);
 </script>
