@@ -17,7 +17,7 @@ urlpatterns = [
     url(r'^load_tags_info/', Index.Tags.as_view()),
     url(r'^load_blog_page/', Index.Blog.as_view()),
     url(r'^article_\d+', blog.Article.as_view()),
-    url(r'^feedback/', feedback.as_view()),
+    url(r'^feedback', feedback.as_view()),
     url(r'^show_type', blog.Tag.as_view()),
 ]
 

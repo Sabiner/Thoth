@@ -66,6 +66,11 @@ class ArticleService(object):
 
     @classmethod
     def get_blog_by_url(cls, url):
+        """
+        Get blog details information by url.
+        :param url: article url.
+        :return: blog detail
+        """
         try:
             assert url is not None
         except AssertionError, e:
@@ -79,6 +84,13 @@ class ArticleService(object):
 
     @classmethod
     def get_blog_by_type(cls, _type, start, end):
+        """
+        Filter blog information by article type.
+        :param _type: article type.
+        :param start: limit start
+        :param end: limit end.
+        :return: articles
+        """
         try:
             assert isinstance(start, int)
             assert isinstance(end, int)

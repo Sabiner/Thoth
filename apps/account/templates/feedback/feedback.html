@@ -2,7 +2,7 @@
 <br/><br/>
 <hr/>
 <div class="layui-container">
-    <form class="layui-form" action="feedback" method="post">
+    <div class="layui-form">{% csrf_token %}
         <div class="layui-form-item">
             <label class="layui-form-label"> *简述 </label>
             <div class="layui-input-block">
@@ -26,20 +26,41 @@
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>
-    </form>
+    </div>
     <blockquote class="layui-elem-quote" style="margin: 30px; margin-right: 100px; margin-left: 100px; font-size: small">
         <p>亲爱的浏览者，您可以在这里填写您对本站的看法和意见。</p>
         <p>博主一定会用心对待每一条珍贵的意见，希望能够通过大家的共同努力，让本站越来越好。</p>
     </blockquote>
 </div>
 <script>
-    //Demo
     layui.use('form', function () {
         var form = layui.form;
-
-        //监听提交
         form.on('submit(formDemo)', function (data) {
-            return true;
+            var title = $("input[name=title]").val();
+            var content = $("textarea[name=desc]").val();
+            var data = {
+                title: title,
+                content: content
+            };
+            var url = "feedback";
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: data,
+                dataType: 'text',
+                error: function(){
+                    var index = layer.load();
+                    layer.msg('意见反馈失败，管理员正在火速解决', {icon: 5});
+                    layer.close(index);
+                },
+                success: function(text){
+                    var index = layer.load();
+                    $("input[name=title]").val("");
+                    $("textarea[name=desc]").val("");
+                    layer.msg('您的建议已反馈网站管理员，感谢您访问本站', {icon: 6});
+                    layer.close(index);
+                }
+            });
         });
     });
 </script>

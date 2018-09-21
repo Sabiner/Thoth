@@ -2,7 +2,6 @@
 
 import os
 from django.db import models
-from console.common.decorator import get_none_if_no_value
 from mdeditor.fields import MDTextField
 from console.common.logger import getLogger
 from console import config
