@@ -14,11 +14,12 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'mdeditor/', include('mdeditor.urls')),
     url(r'^$', Index.Index.as_view()),
-    url(r'^load_tags_info/', Index.Tags.as_view()),
-    url(r'^load_blog_page/', Index.Blog.as_view()),
+    url(r'^load_tags_info', Index.Tags.as_view()),
+    url(r'^load_blog_page', Index.Blog.as_view()),
     url(r'^article_\d+', blog.Article.as_view()),
     url(r'^feedback', feedback.as_view()),
     url(r'^show_type', blog.Tag.as_view()),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
