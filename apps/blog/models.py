@@ -20,17 +20,16 @@ class Article(models.Model):
     title = models.CharField(max_length=50)
     create_time = models.DateTimeField(auto_now_add=True)
     creator = models.CharField(max_length=30)
-    url = models.CharField(max_length=20)
     description = models.TextField(max_length=400)
     content = MDTextField()
 
-    list_display = ('type', 'title', 'create_time', 'creator', 'url', 'description')
+    list_display = ('type', 'title', 'create_time', 'creator', 'description')
 
     def __unicode__(self):
         return self.title
 
     def save(self, *args, **kwargs):
-        article_path = os.path.join(conf.get('article', 'path'), self.url)
+        article_path = os.path.join(conf.get('article', 'path'), self.create_time.strftime("%Y%m%d%H%M%S"))
         with open(article_path, 'w') as f:
             f.write(self.content.encode('utf-8'))
 
@@ -48,6 +47,5 @@ class Article(models.Model):
             'create_time': self.create_time.strftime("%Y-%m-%d %H:%M:%S"),
             'creator': self.creator,
             'content': content,
-            'url': self.url
         }
         return obj

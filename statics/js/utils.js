@@ -1,0 +1,1 @@
+function turn_top() {    scrollTo(0, 0);}function chat() {    alert("敬请期待！");}

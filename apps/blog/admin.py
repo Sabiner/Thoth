@@ -10,7 +10,7 @@ log = logger.getLogger()
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
-    fields = ('type', 'title', 'creator', 'url', 'description', 'content')
+    fields = ('type', 'title', 'creator', 'description', 'content')
 
     def get_form(self, request, obj=None, **kwargs):
         if obj:

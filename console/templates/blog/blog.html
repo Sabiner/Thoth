@@ -19,7 +19,7 @@
                     </li>
                     {% for article in article_titles %}
                     <li class="site-tree-noicon ">
-                        <a href="javascript:showArticle('{{ article.url }}');"><cite>{{ article.title }}</cite></a>
+                        <a href="/article/{{ article.url }}"><cite>{{ article.title }}</cite></a>
                     </li>
                     {% endfor %}
                     <li class="site-tree-noicon ">
@@ -39,7 +39,7 @@
                             <p>{{ article.title }}</p>
                             <p style="overflow: hidden; text-overflow: ellipsis; display:
                                 -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">{{ article.description }}</p>
-                            <a href="javascript:showArticle('{{ article.url }}');"> 查看更多 >>> </a>
+                            <a href="/article/{{ article.url }}"> 查看更多 >>> </a>
                         </div>
                     </li>
                     {% endfor %}
@@ -59,12 +59,6 @@
     <li class="layui-icon layui-icon-top" id="top" style="display: none" onclick="javascript:turn_top();"></li>
 </ul>
 <script>
-    function turn_top() {
-        scrollTo(0, 0);
-    }
-    function chat() {
-        alert("敬请期待！");
-    }
     layui.use('element', function () {
         var element = layui.element;
     });
@@ -76,12 +70,6 @@
             arrow: 'always'
         });
     });
-    $(document).scroll(function () {
-        if ($(document).scrollTop() > 0) {
-            $("#top").show();
-        } else {
-            $("#top").hide();
-        }
-    });
 </script>
 <script src="{% static 'js/blog/blog.manage.js' %}"></script>
+<script src="{% static 'js/utils.js' %}"></script>
