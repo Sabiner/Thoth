@@ -21,6 +21,7 @@ class Article(View):
         except IndexError, e:
             log.debug(e)
 
+        log.debug(url)
         if url:
             blog = ArticleService.get_blog_by_url(url)
 

@@ -17,51 +17,47 @@ class ArticleService(object):
         pass
 
     @classmethod
-    def create(cls, _type, title, create_time, creator, content, url):
-        try:
-            args = (_type, title, create_time, creator, content, url)
-            for arg in args:
-                assert arg is not None
-        except AssertionError, e:
+    def create(cls, _type, title, create_time, creator, content):
+        if not all((_type, title, create_time, creator, content)):
             return False
         else:
             article = Article(
                 type=_type,
                 title=title,
-                create_time=create_time,
+                create_time=create_time.strftime("%Y-%m-%d %H:%M:%S"),
                 creator=creator,
-                content=content,
-                url=url
+                content=content
             )
             article.save()
             return True
 
     @classmethod
     def get(cls):
-        all_types = list()
         information = {
             'news': list()
         }
+        try:
+            all_type = Article.objects.values('type').distinct()
+            for _type in all_type:
+                t = _type.get('type')
+                articles_a_type = Article.objects.filter(type=t).order_by('-create_time')[0: 10]
+                for article in articles_a_type:
+                    article.url = cls.date_to_string(article.create_time)
+                information[t] = articles_a_type
 
-        all_type = Article.objects.values('type').distinct()
-        for _type in all_type:
-            all_types.append(_type.get('type'))
+            all_article = Article.objects.all().order_by('-create_time')[0: 10]
+            for article in all_article:
+                article.url = cls.date_to_string(article.create_time)
+                article.create_time = article.create_time.strftime("%Y-%m-%d %H:%M:%S")
 
-        for _type in all_types:
-            articles_a_type = Article.objects.filter(type=_type).order_by('-create_time')[0: 10]
-            information[_type] = articles_a_type
+                content_path = copy.copy(article.content)
+                if os.path.exists(content_path):
+                    with open(content_path, 'r') as f:
+                        article.content = f.read()
 
-        all_article = Article.objects.all().order_by('-create_time')[0: 10]
-        for article in all_article:
-            article.create_time = article.create_time.strftime("%Y-%m-%d %H:%M:%S")
-
-            content_path = copy.copy(article.content)
-            if os.path.exists(content_path):
-                with open(content_path, 'r') as f:
-                    article.content = f.read()
-
-            information['news'].append(article)
-
+                information['news'].append(article)
+        except Exception, e:
+            log.debug(e)
         return information
 
     @classmethod
@@ -71,13 +67,11 @@ class ArticleService(object):
         :param url: article url.
         :return: blog detail
         """
-        try:
-            assert url is not None
-        except AssertionError, e:
-            log.debug(e)
-            return False
-
-        blog = Article.objects.get(url=url)
+        if not url:
+            return dict()
+        create_time = cls.string_to_date(url)
+        blog = Article.objects.get(create_time=create_time)
+        log.debug(blog)
         blog = blog.to_dict()
 
         return blog
@@ -103,3 +97,11 @@ class ArticleService(object):
             article.create_time = article.create_time.strftime("%Y-%m-%d %H:%M:%S")
 
         return articles
+
+    @staticmethod
+    def date_to_string(date):
+        return date.strftime("%Y%m%d%H%M%S")
+
+    @staticmethod
+    def string_to_date(_str):
+        return '%s-%s-%s %s:%s:%s' % (_str[:4], _str[4:6], _str[6:8], _str[8:10], _str[10: 12], _str[12:])
