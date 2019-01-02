@@ -16,6 +16,5 @@ class ArticleAdmin(admin.ModelAdmin):
         if obj:
             if os.path.exists(obj.content):
                 with open(obj.content, 'r') as f:
-                    log.debug('open file')
                     obj.content = f.read()
         return super(ArticleAdmin, self).get_form(request, obj, **kwargs)

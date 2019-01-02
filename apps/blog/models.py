@@ -1,6 +1,8 @@
 # coding=utf-8
 
 import os
+from datetime import datetime
+
 from django.db import models
 from mdeditor.fields import MDTextField
 from console.common.logger import getLogger
@@ -18,7 +20,7 @@ class Article(models.Model):
 
     type = models.CharField(max_length=50)
     title = models.CharField(max_length=50)
-    create_time = models.DateTimeField(auto_now_add=True)
+    create_time = models.DateField(default=datetime.now())
     creator = models.CharField(max_length=30)
     description = models.TextField(max_length=400)
     content = MDTextField()
@@ -29,7 +31,8 @@ class Article(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
-        article_path = os.path.join(conf.get('article', 'path'), self.create_time.strftime("%Y%m%d%H%M%S"))
+        super(Article, self).save(*args, **kwargs)
+        article_path = os.path.join(conf.get('article', 'path'), str(self.id))
         with open(article_path, 'w') as f:
             f.write(self.content.encode('utf-8'))
 
@@ -44,7 +47,7 @@ class Article(models.Model):
         obj = {
             'type': self.type,
             'title': self.title,
-            'create_time': self.create_time.strftime("%Y-%m-%d %H:%M:%S"),
+            'create_time': self.create_time,
             'creator': self.creator,
             'content': content,
         }

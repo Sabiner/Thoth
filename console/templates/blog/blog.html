@@ -19,7 +19,7 @@
                     </li>
                     {% for article in article_titles %}
                     <li class="site-tree-noicon ">
-                        <a href="/article/{{ article.url }}"><cite>{{ article.title }}</cite></a>
+                        <a href="/article/{{ article.id }}"><cite>{{ article.title }}</cite></a>
                     </li>
                     {% endfor %}
                     <li class="site-tree-noicon ">
@@ -39,7 +39,7 @@
                             <p>{{ article.title }}</p>
                             <p style="overflow: hidden; text-overflow: ellipsis; display:
                                 -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">{{ article.description }}</p>
-                            <a href="/article/{{ article.url }}"> 查看更多 >>> </a>
+                            <a href="/article/{{ article.id }}"> 查看更多 >>> </a>
                         </div>
                     </li>
                     {% endfor %}

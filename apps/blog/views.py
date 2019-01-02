@@ -1,7 +1,6 @@
 # coding=utf-8
 
 import markdown
-import chardet
 
 from django.views.generic import View
 from console.common.logger import getLogger
@@ -21,7 +20,6 @@ class Article(View):
         except IndexError, e:
             log.debug(e)
 
-        log.debug(url)
         if url:
             blog = ArticleService.get_blog_by_url(url)
 
