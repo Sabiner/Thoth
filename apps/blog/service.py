@@ -21,16 +21,14 @@ class ArticleService(object):
         pass
 
     @classmethod
-    def create(cls, _type, title, create_time, creator, content):
-        log.debug(_type, title, create_time, creator, content)
-        if not all((_type, title, create_time, creator, content)):
+    def create(cls, _type, title, creator, content):
+        log.debug(_type, title, creator, content)
+        if not all((_type, title, creator, content)):
             return False
         else:
-            log.debug(create_time)
             article = Article(
                 type=_type,
                 title=title,
-                create_time=create_time.strftime("%Y-%m-%d %H:%M:%S"),
                 creator=creator,
                 content=content
             )
@@ -47,10 +45,10 @@ class ArticleService(object):
             all_type = Article.objects.values('type').distinct()
             for _type in all_type:
                 t = _type.get('type')
-                articles_a_type = Article.objects.filter(type=t).order_by('-create_time')[0: 10]
+                articles_a_type = Article.objects.filter(type=t).order_by('-create_at')[0: 10]
                 information[t] = articles_a_type
 
-            all_article = Article.objects.all().order_by('-create_time')[0: 10]
+            all_article = Article.objects.all().order_by('-create_at')[0: 10]
             for article in all_article:
                 content_path = copy.copy(article.content)
                 if os.path.exists(content_path):
@@ -93,5 +91,5 @@ class ArticleService(object):
             log.debug(e)
             return False
 
-        articles = Article.objects.filter(type=_type).order_by('-create_time')[start: end]
+        articles = Article.objects.filter(type=_type).order_by('-create_at')[start: end]
         return articles

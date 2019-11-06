@@ -25,7 +25,7 @@ class Article(models.Model):
     description = models.TextField(max_length=400)
     content_path = models.CharField(max_length=255, null=True, blank=True)
 
-    list_display = ('title', 'type', 'tag', 'create_time', 'creator', 'description')
+    list_display = ('title', 'type', 'tag', 'create_at', 'creator', 'description')
 
     class Meta:
         managed = False
@@ -52,7 +52,7 @@ class Article(models.Model):
             title=self.title,
             type=self.type,
             tag=self.tag,
-            create_time=self.create_at,
+            create_at=self.create_at,
             creator=self.creator,
             content=content,
         )
