@@ -1,25 +1,11 @@
 # coding=utf-8
-"""
-Django settings for console project.
 
-For more information on this file, see
-https://docs.djangoproject.com/en/dev/topics/settings/
-
-For the full list of settings and their values, see
-https://docs.djangoproject.com/en/dev/ref/settings/
-"""
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from common.utils import Config
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/dev/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'l7i1prrz&&%@23vv3&0xvoj94x+@iy$yyj9hz2=9(p9b9e=^-g'
-# SECRET_KEY = os.environ['SECRET_KEY']
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
@@ -53,17 +39,29 @@ ROOT_URLCONF = 'console.urls'
 
 WSGI_APPLICATION = 'console.wsgi.application'
 
-APPEND_SLASH=False
+APPEND_SLASH = False
 
 # Database
-# https://docs.djangoproject.com/en/dev/ref/settings/#databases
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
+config = Config()
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': config.db_name,
+        'USER': config.db_username,
+        'PASSWORD': config.db_password,
+        'HOST': config.db_ip,
+        'PORT': config.db_port,
+        'ATOMIC_REQUESTS': True
     }
 }
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/
@@ -77,10 +75,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/dev/howto/static-files/
 
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static')
 

@@ -1,9 +1,29 @@
-# Online_home
-This is Sabiner's blog code.Later, we will follow up with other small projects or tools independently developed by Sabiner.
+## 1. Thoth
+个人博客源码，名称 `Thoth` 起源于古埃及神话中的托特神。
 
-Do this each reboot:
-> mkdir /var/run/uwsgi
+托特（Thoth），是古埃及神话中智慧之神，同时也是月亮、数学、医药之神，埃及象形文字的发明者，众神的文书；在《亡灵书》中被描绘为立姿审判者。以佩戴满月圆盘及新月冠鹮头人身的形象出现。
 
-> uwsgi --ini uwsgi.ini
+## 2. 技术栈
 
-URL: http://gosabiner.com/
+由于博客建成到现下为止，技术更迭，已经有更稳定的版本出现，后期会慢慢重构代码。
+
+如今的技术栈如下表所示：
+
+|  技术  | 版本     |
+| :----------: | :-----------:  |
+|  Python  | 2.7     |
+|  Django    | 1.11.4    |
+|  MySQL    |     |
+
+## 3. 使用
+
+1. 从Github Clone下来源码后，安装依赖包；
+2. 在Linux环境下执行如下指令（每次重启机器都要执行）:
+
+    > mkdir /var/run/uwsgi
+    
+    > uwsgi --ini uwsgi.ini
+    
+    后期会将这一步封装成一键脚本，或写入开机初始化。
+
+3. 配置 Nginx 后访问 IP 地址；

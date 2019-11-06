@@ -1,6 +1,7 @@
 # coding=utf-8
 
 import os
+import uuid
 from datetime import datetime
 
 from django.db import models
@@ -15,17 +16,20 @@ conf = config.setup_config()
 
 class Article(models.Model):
 
-    class Meta:
-        db_table = 'article'
-
-    type = models.CharField(max_length=50)
-    title = models.CharField(max_length=50)
-    create_time = models.DateField(default=datetime.now())
-    creator = models.CharField(max_length=30)
+    id = models.CharField(unique=True, max_length=40, primary_key=True, default=uuid.uuid4())
+    title = models.CharField(max_length=200, null=True, blank=True)
+    creator = models.CharField(max_length=50)
+    create_at = models.DateField(auto_now_add=True)
+    type = models.CharField(max_length=50, null=True, blank=True)
+    tag = models.CharField(max_length=50, null=True, blank=True)
     description = models.TextField(max_length=400)
-    content = MDTextField()
+    content_path = models.CharField(max_length=255, null=True, blank=True)
 
-    list_display = ('type', 'title', 'create_time', 'creator', 'description')
+    list_display = ('title', 'type', 'tag', 'create_time', 'creator', 'description')
+
+    class Meta:
+        managed = False
+        db_table = 'article'
 
     def __unicode__(self):
         return self.title
@@ -44,11 +48,11 @@ class Article(models.Model):
         if os.path.exists(self.content):
             with open(self.content, 'r') as f:
                 content = f.read()
-        obj = {
-            'type': self.type,
-            'title': self.title,
-            'create_time': self.create_time,
-            'creator': self.creator,
-            'content': content,
-        }
-        return obj
+        return dict(
+            title=self.title,
+            type=self.type,
+            tag=self.tag,
+            create_time=self.create_at,
+            creator=self.creator,
+            content=content,
+        )
