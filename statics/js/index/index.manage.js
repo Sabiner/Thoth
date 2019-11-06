@@ -1,10 +1,6 @@
 // Sabiner <chaoyue_ge@163.com>
 
 $(function() {
-    $("#get_tags").click(function () {
-        var url = "/load_tags_info";
-        load_page(url);
-    });
     $("#blog").click(function () {
         var url = "/load_blog_page";
         load_page(url);
