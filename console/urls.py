@@ -14,7 +14,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'mdeditor/', include('mdeditor.urls')),
     url(r'^$', Index.Index.as_view()),
-    url(r'^load_tags_info', Index.Tags.as_view()),
     url(r'^load_blog_page', Index.Blog.as_view()),
     url(r'^article', blog.Article.as_view()),
     url(r'^feedback', feedback.as_view()),
