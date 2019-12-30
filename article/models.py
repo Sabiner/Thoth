@@ -30,6 +30,17 @@ class Article(models.Model):
     def __unicode__(self):
         return self.title
 
+    def to_dict(self):
+        date_format = '%Y-%m-%d'
+        return dict(
+            id=self.id,
+            title=self.title,
+            creator=self.creator,
+            create_at=self.create_at.strftime(date_format),
+            tag=self.tag,
+            description=self.description
+        )
+
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
         article_path = os.path.join(conf.article_path, str(self.id))

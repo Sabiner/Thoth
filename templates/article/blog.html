@@ -1,0 +1,17 @@
+{% load static %}
+
+{% for article in articles %}
+    <div class="blogs">
+        <figure><img src="{% static 'images/03.jpg' %}"></figure>
+        <ul>
+            <h3><a href="/">{{ article.title }}</a></h3>
+            <p>{{ article.description }}</p>
+            <p class="autor">
+                <span class="lm f_l"><a href="/">{{ article.tag }}</a></span>
+                <span class="dtime f_l">{{ article.create_at }}</span>
+                <span class="viewnum f_r">浏览（<a href="/">1</a>）</span>
+                <span class="pingl f_r">评论（<a href="/">1</a>）</span>
+            </p>
+        </ul>
+    </div>
+{% endfor %}
