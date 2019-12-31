@@ -1,0 +1,22 @@
+{% load static %}
+<div style="display: block;" class="bd bd-news">
+    <ul>
+        {% for traffic in traffic_list %}
+            <li><a href="article/{{ traffic.id }}">{{ traffic.title }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+<div class="bd bd-news">
+    <ul>
+        {% for latest in latest_list %}
+            <li><a href="article/{{ latest.id }}">{{ latest.title }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+<div class="bd bd-news">
+    <ul>
+        {% for recommended in recommended_list %}
+            <li><a href="article/{{ recommended.id }}">{{ recommended.title }}</a></li>
+        {% endfor %}
+    </ul>
+</div>

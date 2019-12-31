@@ -26,10 +26,10 @@
     </div>
     <nav id="topnav">
         <ul>
-            <a href="index.html" target="_blank">首页</a>
-            <a href="p.html" target="_blank">归档</a>
-            <a href="a.html" target="_blank">关于我</a>
-            <a href="b.html" target="_blank">留言</a>
+            <a href="">首页</a>
+            <a href="#">归档</a>
+            <a href="#">关于我</a>
+            <a href="#">留言</a>
         </ul>
         <script src="{% static 'js/silder.js' %}"></script>
     </nav>
@@ -79,11 +79,11 @@
             <h3>关注我</h3>
             <div class="gzwm">
                 <ul>
-                    <li><a class="xlwb" href="#" target="_blank">新浪微博</a></li>
-                    <li><a class="txwb" href="#" target="_blank">腾讯微博</a></li>
-                    <li><a class="rss" href="portal.php?mod=rss" target="_blank">邮箱</a></li>
-                    <li><a class="wx" href="mailto:2267313059@qq.com" onmouseover="tip.start(this)"
-                           tips="<font color='#fff'>关注<b>Sabiner</b>微信账号</font><br><b><img src='images/ft-wx-s.png'></b>">微信</a>
+                    <li><a class="xlwb" href="http://github.com/Sabiner" target="_blank">GitHub</a></li>
+                    <li><a class="rss" href="mailto:2267313059@qq.com">邮箱</a></li>
+                    <li><a class="wx" onmouseover="tip.start(this)"
+                           tips="<font color='#fff'>关注<b>Sabiner</b>微信账号</font><br><b>
+                           <img src='{% static 'images/ft-wx-s.png' %}'></b>">微信</a>
                     </li>
                     <div id="mjs:tip" class="tip" style="position:absolute;left:0;top:0;display:none;"></div>
                     <script>
@@ -142,44 +142,12 @@
             </script>
             <div class="ms-top">
                 <ul class="hd" id="tab">
-                    <li class="cur"><a href="/">点击排行</a></li>
-                    <li><a href="/">最新文章</a></li>
-                    <li><a href="/">站长推荐</a></li>
+                    <li class="cur"><a>点击排行</a></li>
+                    <li><a>最新文章</a></li>
+                    <li><a>站长推荐</a></li>
                 </ul>
             </div>
-            <div class="ms-main" id="ms-main">
-                <div style="display: block;" class="bd bd-news">
-                    <ul>
-                        <li><a href="/" target="_blank">A</a></li>
-                        <li><a href="/" target="_blank">B</a></li>
-                        <li><a href="/" target="_blank">C</a></li>
-                        <li><a href="/" target="_blank">D</a></li>
-                        <li><a href="/" target="_blank">E</a></li>
-                        <li><a href="/" target="_blank">F</a></li>
-                    </ul>
-                </div>
-                <div class="bd bd-news">
-                    <ul>
-                        <li><a href="/" target="_blank">A</a></li>
-                        <li><a href="/" target="_blank">B</a></li>
-                        <li><a href="/" target="_blank">C</a></li>
-                        <li><a href="/" target="_blank">D</a></li>
-                        <li><a href="/" target="_blank">E</a></li>
-                        <li><a href="/" target="_blank">F</a></li>
-                    </ul>
-                </div>
-                <div class="bd bd-news">
-                    <ul>
-                        <li><a href="/" target="_blank">A</a></li>
-                        <li><a href="/" target="_blank">B</a></li>
-                        <li><a href="/" target="_blank">C</a></li>
-                        <li><a href="/" target="_blank">D</a></li>
-                        <li><a href="/" target="_blank">E</a></li>
-                        <li><a href="/" target="_blank">F</a></li>
-                    </ul>
-                </div>
-            </div>
-            <!--ms-main end -->
+            <div class="ms-main" id="ms-main"></div>
         </div>
         <!--切换卡 moreSelect end -->
         <div class="cloud">
@@ -196,7 +164,7 @@
             </ul>
         </div>
         <div class="tuwen">
-            <h3>推荐</h3>
+            <h3>相关</h3>
             <ul>
                 <li><a href="/"><img src="{% static 'images/01.jpg' %}"><b>A</b></a>
                     <p><span class="tulanmu"><a href="/">Python</a></span><span class="tutime">2015-02-15</span></p>
@@ -234,6 +202,5 @@
 </html>
 <script src="{% static 'js/index/index.js' %}"></script>
 <script>
-    var url = "article/show_latest_article";
-    load_page(url);
+    load_page();
 </script>

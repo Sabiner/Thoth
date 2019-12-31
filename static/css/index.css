@@ -36,7 +36,7 @@
 .blogs h3 a { color: #474645; }
 .blogs h3 a:hover { color: #066; text-decoration: underline }
 .blogs figure { float: left; width: 25%; overflow: hidden; }
-.blogs figure img { width: 80%; margin: auto; -moz-transition: all 0.5s; -webkit-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s; }
+.blogs figure img { width: 100%; margin: auto; -moz-transition: all 0.5s; -webkit-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s; }
 .blogs figure:hover img { -moz-transform: scale(1.1); -webkit-transform: scale(1.1); -o-transform: scale(1.1); -ms-transform: scale(1.1); }
 .blogs ul { float: right; line-height: 22px; width: 72%; color: #756F71; position: relative }
 .autor { overflow: hidden; clear: both; margin: 10px 0; display: inline-block; color: #838383; width: 100%; position: absolute; top: 110px; }
@@ -54,7 +54,7 @@
 .gzwm li a { color: #747F8C; width: 52px; text-align: center; padding-top: 60px; float: left; }
 .gzwm .rss { background: url(../images/ico_04_1.jpg) no-repeat scroll 0% 0% transparent; }
 .gzwm .rss:hover { color: #000; background: url(../images/ico_04.png) no-repeat scroll 0% 0% transparent; }
-.gzwm .xlwb { background: url(../images/ico_05_1.jpg) no-repeat scroll 0% 0% transparent; }
+.gzwm .xlwb { background: url(../images/ico_05_1.png) no-repeat scroll 0% 0% transparent; }
 .gzwm .xlwb:hover { color: #000; background: url(../images/ico_05.png) no-repeat scroll 0% 0% transparent; }
 .gzwm .txwb { background: url(../images/ico_06_1.jpg) no-repeat scroll 0% 0% transparent; }
 .gzwm .txwb:hover { color: #000; background: url(../images/ico_06.png) no-repeat scroll 0% 0% transparent; }

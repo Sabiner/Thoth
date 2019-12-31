@@ -1,21 +1,34 @@
 # -*- coding: utf-8 -*-
 
+from django.http import JsonResponse
 from django.shortcuts import render
 from rest_framework import viewsets
-from article.models import Article
+from article.service import ArticleService
 
 
 class ArticleView(viewsets.ViewSet):
 
-    def show_latest_article(self, request):
+    @classmethod
+    def get_latest_article(cls, request):
         """
-        展示最新的 10 条记录
+        展示最新的 6 条记录
         """
-        try:
-            all_article = Article.objects.all().order_by('-create_at')[0: 6]
-            information = [article.to_dict() for article in all_article]
-        except Exception as e:
-            raise e
-
-        response = dict(articles=information)
+        response = dict(articles=ArticleService().get_latest_articles())
         return render(request, 'article/blog.html', response)
+
+    @classmethod
+    def get_ranking_list(cls, request):
+        """
+        展示首页排行榜
+        """
+        response = dict(
+            traffic_list=ArticleService().get_traffic_list(),
+            latest_list=ArticleService().get_latest_articles(),
+            recommended_list=ArticleService().get_recommended_list()
+        )
+        return render(request, 'index/ranking_list.html', response)
+
+    @classmethod
+    def get_by_id(cls, request):
+        response = dict()
+        return render(request, 'article/article_content.html', response)
