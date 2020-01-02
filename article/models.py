@@ -5,9 +5,7 @@ import uuid
 from django.db import models
 from mdeditor.fields import MDTextField
 
-from Thoth.utils import Config
-
-conf = Config()
+from Thoth.utils import config
 
 
 class Article(models.Model):
@@ -45,9 +43,8 @@ class Article(models.Model):
 
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
-        article_path = os.path.join(conf.article_path, str(self.id))
+        article_path = os.path.join(config.article_path, str(self.id))
         with open(article_path, 'w') as f:
             f.write(self.content_path)
         self.content_path = article_path
         super(Article, self).save(force_insert, force_update, using, update_fields)
-

@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 
 import os
+import logging
 import configparser
 
 BASE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-print(BASE_PATH)
+
 class Config(object):
 
     def __init__(self):
@@ -21,3 +22,25 @@ class Config(object):
 
         # Files Path
         self.article_path = config.get('article', 'path')
+
+        # Log Path
+        self.log_path = config.get('log', 'path')
+
+
+config = Config()
+
+
+def load_logger():
+    """
+    load logger for print log to logfile.
+    :return: logger
+    """
+    logger = logging.getLogger(__name__)
+    logger.setLevel(level=logging.INFO)
+    handler = logging.FileHandler(config.log_path)
+    handler.setLevel(logging.INFO)
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
+
+    return logger

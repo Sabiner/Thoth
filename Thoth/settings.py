@@ -1,7 +1,7 @@
 # coding: utf-8
 
 import os
-from Thoth.utils import Config
+from Thoth.utils import config
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -57,7 +57,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'Thoth.wsgi.application'
 
 # Database
-config = Config()
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',

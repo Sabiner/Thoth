@@ -1,3 +1,42 @@
 {% load static %}
+<link href="{% static 'css/base.css' %}" rel="stylesheet">
+<link href="{% static 'css/index.css' %}" rel="stylesheet">
+<link href="{% static 'css/media.css' %}" rel="stylesheet">
+<body>
+<header>
+    <div class="logo">
+        <div class="logo_l f_l"><a href="/"><img src="{% static 'images/logo.png' %}"></a></div>
+        <div class="logo_r f_r"><a href="/"><img src="{% static 'images/search.png' %}"></a></div>
+    </div>
+    <nav id="topnav">
+        <ul>
+            <a href="">首页</a>
+            <a href="#">归档</a>
+            <a href="#">关于我</a>
+            <a href="#">留言</a>
+        </ul>
+        <script src="{% static 'js/silder.js' %}"></script>
+    </nav>
+</header>
+<article>
+{{ article.content | safe }}
+</article>
+<footer>
+    <div class="endfoot">
+        <div class="ft-list f_r">
 
-<h2>{{ article_id }}</h2>
+            <div class="ft-shares">
+                <a class="shares-ten" title="腾讯微博" href="#" target="_blank"></a>
+                <a class="shares-dib" href="#" target="_blank"></a>
+            </div>
+
+            <div class="ft-nav">
+                <a href="#" id="qaurl">问题反馈</a>
+            </div>
+            <p class="ft-copyright"> Copyright 2020 Sabiner</p>
+        </div>
+    </div>
+
+    <div id="tbox"><a id="togbook" href="/"></a> <a id="gotop" href="javascript:void(0)"></a></div>
+</footer>
+</body>

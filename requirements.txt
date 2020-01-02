@@ -1,6 +1,5 @@
 configparser==4.0.2
 Django==1.11.21
-django-markdown-deux==1.0.6
 django-markdown-editor==1.0.3
 django-mdeditor==0.1.14
 Jinja2==2.7.2
@@ -14,4 +13,6 @@ mysql-connector-python==8.0.16
 paramiko==2.5.0
 requests==2.6.0
 urllib3==1.10.2
-uWSGI==2.0.18
+#uWSGI==2.0.18
+mysqlclient
+djangorestframework-3.11.0

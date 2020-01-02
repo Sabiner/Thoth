@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from django.http import JsonResponse
 from django.shortcuts import render
 from rest_framework import viewsets
 from article.service import ArticleService
@@ -30,8 +29,8 @@ class ArticleView(viewsets.ViewSet):
 
     @classmethod
     def get_by_id(cls, request, article_id):
-        response = dict(article_id=article_id)
-        return render(request, 'article/article_content.html', response)
+        article = ArticleService().get_by_id(article_id)
+        return render(request, 'article/article_content.html', dict(article=article))
 
     @classmethod
     def get_correlation(cls, request):
