@@ -2,7 +2,7 @@
 
 {% for article in articles %}
     <div class="blogs">
-        <figure><img src="{% static 'images/04.jpg' %}"></figure>
+        <figure><img src="{% static article.image_path %}"></figure>
         <ul>
             <h3><a href="/">{{ article.title }}</a></h3>
             <p>{{ article.description }}</p>

@@ -20,8 +20,9 @@ class Article(models.Model):
     tag = models.CharField(max_length=50, null=True, blank=True)
     description = models.TextField(max_length=400)
     content_path = MDTextField()
+    image_path = models.CharField(max_length=50, null=True, blank=True)
 
-    list_display = ('title', 'type', 'tag', 'create_at', 'creator', 'description')
+    list_display = ('title', 'type', 'tag', 'create_at', 'creator', 'description', 'image_path')
 
     class Meta:
         managed = False
@@ -38,7 +39,8 @@ class Article(models.Model):
             creator=self.creator,
             create_at=self.create_at.strftime(date_format),
             tag=self.tag,
-            description=self.description
+            description=self.description,
+            image_path=self.image_path
         )
 
     def save(self, force_insert=False, force_update=False, using=None,
@@ -48,3 +50,4 @@ class Article(models.Model):
             f.write(self.content_path)
         self.content_path = article_path
         super(Article, self).save(force_insert, force_update, using, update_fields)
+
