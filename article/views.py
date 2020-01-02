@@ -29,6 +29,13 @@ class ArticleView(viewsets.ViewSet):
         return render(request, 'index/ranking_list.html', response)
 
     @classmethod
-    def get_by_id(cls, request):
-        response = dict()
+    def get_by_id(cls, request, article_id):
+        response = dict(article_id=article_id)
         return render(request, 'article/article_content.html', response)
+
+    @classmethod
+    def get_correlation(cls, request):
+        response = dict(
+            correlations=ArticleService().get_correlation_list()
+        )
+        return render(request, 'article/correlation.html', response)

@@ -1,0 +1,16 @@
+{% load static %}
+<h3>相关</h3>
+<ul>
+    {% for article in correlations %}
+        <li>
+            <a href="article/{{ article.id }}">
+                <img src="{% static article.image_path %}">
+                <b>{{ article.title }}</b>
+            </a>
+            <p>
+                <span class="tulanmu"><a href="/">{{ article.tag }}</a></span>
+                <span class="tutime">{{ article.create_at }}</span>
+            </p>
+        </li>
+    {% endfor %}
+</ul>
