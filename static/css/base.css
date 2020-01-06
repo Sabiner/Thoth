@@ -40,7 +40,7 @@ footer { background: #f6f6f6; border-top: 1px solid #eee; width: 100%; clear: bo
 .ft-copyright { color: #CECECE; line-height: 21px; margin-right: 100px }
 .ft-list { background: url(../images/ft-wx-s.png) no-repeat right; height: 100px }
 .ft-shares { height: 34px; display: block; margin-top: 10px; margin-right: 100px }
-.ft-shares a { height: 34px; width: 31px; float: right; margin-left: 20px; background: url(../images/ft-shares.png) no-repeat 0 -999px; }
+.ft-shares a { height: 34px; width: 31px; float: right; margin-left: 20px; background: no-repeat 0 -999px; }
 .ft-shares .shares-ucloud { width: 80px; margin: 0 5px 0 22px; background-position: 0 -137px; }
 .ft-shares .shares-ucloud:hover { background-position: -100px -137px }
 .ft-shares .shares-sina { background-position: 0 -102px; }

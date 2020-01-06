@@ -2,6 +2,10 @@
 <link href="{% static 'css/base.css' %}" rel="stylesheet">
 <link href="{% static 'css/index.css' %}" rel="stylesheet">
 <link href="{% static 'css/media.css' %}" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/md_github.css' %}">
+<script type="text/javascript" src="{% static 'js/up/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/up/js.js' %}"></script>
 <body>
 <header>
     <div class="logo">
@@ -19,7 +23,107 @@
     </nav>
 </header>
 <article>
-{{ article.content | safe }}
+    <div class="l_box f_l markdown-body" style="width: 680px;">
+        <div class="blank"></div>
+        {% load markdown_deux_tags %}
+        <h1>{{ article.title }}</h1>
+        <i class="fa fa-user"></i> {{ article.creator }}
+        &nbsp;&nbsp;
+        <i class="fa fa-calendar" aria-hidden="true"></i> {{ article.create_at }}
+        <hr />
+        {{ article.content | safe }}
+    </div>
+    <div class="r_box f_r" style="width: 290px;">
+        <div class="tit01">
+            <h3>关注我</h3>
+            <div class="gzwm">
+                <ul>
+                    <li><a class="xlwb" href="http://github.com/Sabiner" target="_blank">GitHub</a></li>
+                    <li><a class="rss" href="mailto:2267313059@qq.com">邮箱</a></li>
+                    <li><a class="wx" onmouseover="tip.start(this)"
+                           tips="<font color='#fff'>关注<b>Sabiner</b>微信账号</font><br><b>
+                           <img src='{% static 'images/ft-wx-s.png' %}'></b>">微信</a>
+                    </li>
+                    <div id="mjs:tip" class="tip" style="position:absolute;left:0;top:0;display:none;"></div>
+                    <script>
+                        var tip = {
+                            $: function (ele) {
+                                if (typeof (ele) == "object")
+                                    return ele;
+                                else if (typeof (ele) == "string" || typeof (ele) == "number")
+                                    return document.getElementById(ele.toString());
+                                return null;
+                            },
+                            mousePos: function (e) {
+                                var x, y;
+                                var e = e || window.event;
+                                return {
+                                    x: e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft,
+                                    y: e.clientY + document.body.scrollTop + document.documentElement.scrollTop
+                                };
+                            },
+                            start: function (obj) {
+                                var self = this;
+                                var t = self.$("mjs:tip");
+                                obj.onmousemove = function (e) {
+                                    var mouse = self.mousePos(e);
+                                    t.style.left = mouse.x + 10 + 'px';
+                                    t.style.top = mouse.y + 10 + 'px';
+                                    t.innerHTML = obj.getAttribute("tips");
+                                    t.style.display = '';
+                                };
+                                obj.onmouseout = function () {
+                                    t.style.display = 'none';
+                                };
+                            }
+                        }
+                    </script>
+                </ul>
+            </div>
+        </div>
+        <div class="moreSelect" id="lp_right_select">
+            <script>
+                window.onload = function () {
+                    var oLi = document.getElementById("tab").getElementsByTagName("li");
+                    var oUl = document.getElementById("ms-main").getElementsByTagName("div");
+
+                    for (var i = 0; i < oLi.length; i++) {
+                        oLi[i].index = i;
+                        oLi[i].onmouseover = function () {
+                            for (var n = 0; n < oLi.length; n++) oLi[n].className = "";
+                            this.className = "cur";
+                            for (var n = 0; n < oUl.length; n++) oUl[n].style.display = "none";
+                            oUl[this.index].style.display = "block"
+                        }
+                    }
+                }
+            </script>
+            <div class="ms-top">
+                <ul class="hd" id="tab">
+                    <li class="cur"><a>点击排行</a></li>
+                    <li><a>最新文章</a></li>
+                    <li><a>站长推荐</a></li>
+                </ul>
+            </div>
+            <div class="ms-main" id="ms-main"></div>
+        </div>
+        <div class="cloud">
+            <h3>标签</h3>
+            <ul>
+                <a href="/">Python</a>
+                <a href="/">MySQL</a>
+                <a href="/">数据结构</a>
+                <a href="/">算法</a>
+                <a href="/">Linux</a>
+                <a href="/">OpenStack</a>
+                <a href="/">协议</a>
+                <a href="/">网络</a>
+                <a href="/">BUG</a>
+                <a href="/">Other</a>
+            </ul>
+        </div>
+        <div class="tuwen" id="correlation"></div>
+    </div>
 </article>
 <footer>
     <div class="endfoot">

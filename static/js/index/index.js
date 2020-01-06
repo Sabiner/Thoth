@@ -22,3 +22,7 @@ function load_correlation_list() {
     let url = "article/get_correlation";
     $("#correlation").load(url, "");
 }
+
+function about_me() {
+    console.log("about me");
+}

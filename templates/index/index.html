@@ -28,7 +28,7 @@
         <ul>
             <a href="">首页</a>
             <a href="#">归档</a>
-            <a href="#">关于我</a>
+            <a href="javascript:about_me();">关于我</a>
             <a href="#">留言</a>
         </ul>
         <script src="{% static 'js/silder.js' %}"></script>
@@ -55,11 +55,11 @@
         </div>
         <div class="focustext f_r">
             <section class="ft01">
-                <h3><a href="/">魏无羡</a></h3>
+                <h3><a href="/" target="_blank">魏无羡</a></h3>
                 <p>愿我魏无羡，能够一生锄奸扶弱，无愧于心</p>
             </section>
             <section class="ft02">
-                <h3><a href="/">蓝忘玑</a></h3>
+                <h3><a href="/" target="_blank">蓝忘玑</a></h3>
                 <p>我想带一人，回云深不知处。带回去，藏起来</p>
             </section>
         </div>
@@ -160,31 +160,13 @@
                 <a href="/">Other</a>
             </ul>
         </div>
-        <div class="tuwen" id="correlation">
-            <h3>相关</h3>
-            <ul>
-                <li><a href="/"><img src="{% static 'images/01.jpg' %}"><b>A</b></a>
-                    <p><span class="tulanmu"><a href="/">Python</a></span><span class="tutime">2015-02-15</span></p>
-                </li>
-                <li><a href="/"><img src="{% static 'images/06.jpg' %}"><b>B</b></a>
-                    <p><span class="tulanmu"><a href="/">Python</a></span><span class="tutime">2015-02-15</span></p>
-                </li>
-                <li><a href="/"><img src="{% static 'images/04.jpg' %}"><b>C</b></a>
-                    <p><span class="tulanmu"><a href="/">Python</a></span><span class="tutime">2015-02-15</span></p>
-                </li>
-            </ul>
-        </div>
+        <div class="tuwen" id="correlation"></div>
     </div>
 </article>
 <footer>
     <div class="endfoot">
         <div class="ft-list f_r">
-
-            <div class="ft-shares">
-                <a class="shares-ten" title="腾讯微博" href="#" target="_blank"></a>
-                <a class="shares-dib" href="#" target="_blank"></a>
-            </div>
-
+            <div class="ft-shares"></div>
             <div class="ft-nav">
                 <a href="#" id="qaurl">问题反馈</a>
             </div>
