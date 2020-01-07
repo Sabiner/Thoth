@@ -1,7 +1,12 @@
-from django.views.generic import View
+
+from rest_framework import viewsets
 from django.shortcuts import render
 
 
-class Index(View):
-    def get(self, request, *args, **kwargs):
+class Index(viewsets.ViewSet):
+
+    def get(self, request):
         return render(request, 'index/index.html')
+
+    def about_me(self, request):
+        return render(request, 'index/about_me.html')

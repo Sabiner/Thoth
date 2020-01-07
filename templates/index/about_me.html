@@ -1,0 +1,40 @@
+{% load static %}
+<script type="text/javascript" src="{% static 'js/index/about_me.js' %}"></script>
+<div class="abox">
+    <img src="{% static 'images/aboutme.jpg' %}" style="width: 100%; height: 200px;" /><br>
+    <h2>博主简介</h2><br>
+    <div class="individual_resume" id="content">
+        <span>
+           庄淑尤 主要研究云平台以及Python相关技术，一边工作一边积累经验，
+            分享一些个人平常学习研究的成果，遇到的问题以及解决的方案。
+            后面博主会慢慢丰富本站，认真维护它，给它买个域名，加SEO优化，加评论留言功能等，敬请期待~
+        </span>
+    </div>
+    <div class="navlist">
+        <ul>
+            <li class="navcurrent"><a href="#top1">基本信息</a></li>
+            <li><a href="#top1">工作技能</a></li>
+        </ul>
+    </div>
+    <div class="navtab">
+        <div class="navitem" name="top1">
+            <div class="content">
+                <p>网名：Sabiner | 庄淑尤</p>
+                <p>职业：后端研发工程师</p>
+                <p>邮箱：2267313059@qq.com</p>
+                <p>个人微信：</p>
+                <p><img src="{% static 'images/ft-wx-s.png' %}"></p>
+            </div>
+        </div>
+        <div class="navitem" name="top1">
+            <div class="content">
+                <p class="ab_t">工作技能：</p>
+                <p>1、Python的各种开发</p>
+                <p>2、数据结构与算法</p>
+                <p>3、简单的前端技术</p>
+                <p>4、OpenStack私有云计算与存储管理，编排，自动化维护</p>
+                <p>5、继续吹牛</p>
+            </div>
+        </div>
+    </div>
+</div>

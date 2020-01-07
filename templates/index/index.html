@@ -26,10 +26,10 @@
     </div>
     <nav id="topnav">
         <ul>
-            <a href="">首页</a>
-            <a href="#">归档</a>
-            <a href="javascript:about_me();">关于我</a>
-            <a href="#">留言</a>
+            <a onclick="javascript: switch_tag(this)" href="" id="topnav_current">首页</a>
+            <a onclick="javascript: switch_tag(this)" href="#">归档</a>
+            <a onclick="javascript: switch_tag(this)" href="javascript: about_me();">关于我</a>
+            <a onclick="javascript: switch_tag(this)" href="#">留言</a>
         </ul>
         <script src="{% static 'js/silder.js' %}"></script>
     </nav>

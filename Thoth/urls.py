@@ -6,10 +6,11 @@ from django.conf import settings
 from Thoth.views import Index
 
 urlpatterns = [
-    url(r'^$', Index.as_view()),
+    url(r'^$', Index.as_view({'get': 'get'})),
     url(r'^admin/', admin.site.urls),
     url(r'mdeditor/', include('mdeditor.urls')),
     url(r'^article/', include('article.urls'), name='article'),
+    url(r'^about_me?$', Index.as_view({'get': 'about_me'}), name='about_me')
 ]
 
 if settings.DEBUG:

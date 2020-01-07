@@ -23,6 +23,12 @@ function load_correlation_list() {
     $("#correlation").load(url, "");
 }
 
+function switch_tag(obj) {
+    $("#topnav_current").removeAttr("id");
+    $(obj).attr("id", "topnav_current");
+}
+
 function about_me() {
-    console.log("about me");
+    let url = "about_me";
+    $("article").load(url, "");
 }

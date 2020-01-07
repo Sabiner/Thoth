@@ -4,7 +4,7 @@
 body { font: 12px/1.5 'Microsoft Yahei', 'Simsun'; color: #666666; background: #fff }
 img { border: 0; display: block }
 ul { list-style: none; }
-h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: normal; }
+h1, h3, h4, h5, h6 { font-size: 100%; font-weight: normal; }
 a { outline: none; }
 a:link, a:visited { text-decoration: none; color: #666 }
 .clear { clear: both; }
@@ -90,3 +90,19 @@ _margin-bottom: 15px; }/*解决IE6下不兼容 position:fixed 的问题*/
 .bd-news ul li:hover { border-bottom: #000 1px solid; }/* 鼠标放上去的效果 */
 /*微信top*/
 .tip { padding: 20px 10px; color: #fff; background: #507DBC; line-height: 24px; text-align:center; font-size:14px }
+/**
+关于我
+ */
+.abox { background: rgba(255,255,255,.8); overflow: hidden; margin: 20px 0; padding: 20px 50px; }
+.abox .content { margin-bottom: 20px }
+.abox .content p{ margin-bottom:10px}
+.individual_resume p { margin-bottom: 20px }
+.individual_resume span { display: inline }
+.individual_resume a { color: #3690cf; display: inline-block; }
+.navlist { margin: 30px 0; width: 100%; overflow: hidden; border-bottom: #e4e3e3 1px solid }
+.navlist li { display: block; font-size: 16px; line-height: 40px; float: left;  width:100px; text-align:center; }
+.navitem { display: none; min-height: 260px }
+.navitem:nth-child(1) {display: block;}
+.navcurrent a { color: #222; display: block; position:relative;}
+.navcurrent a:after{ content:""; background:#3690cf; width:100px; height:4px; position:absolute; bottom:0; left:0}
+.ab_t { font-size: 16px; font-weight: bold; margin: 10px 0; border-left: #0da919 3px solid; padding-left: 20px }
