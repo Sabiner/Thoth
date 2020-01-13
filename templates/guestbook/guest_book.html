@@ -1,0 +1,13 @@
+{% load static %}
+
+{% for i in messages %}
+    <div class="fb">
+        <ul>
+            <span class="tximg"><img src="../images/tx5.jpg"></span>
+            <p class="fbtime">
+                <span>{{ i.create_at }}</span> {{ i.creator }}
+            </p>
+            <p class="fbinfo">{{ i.message }}</p>
+        </ul>
+    </div>
+{% endfor %}

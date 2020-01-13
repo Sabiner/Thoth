@@ -13,7 +13,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
 INSTALLED_APPS = [
     'rest_framework',
     'django.contrib.admin',
@@ -24,6 +23,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'markdown_deux',
     'article',
+    'guestbook',
     'mdeditor'
 ]
 
@@ -38,6 +38,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Thoth.urls'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
 
 TEMPLATES = [
     {

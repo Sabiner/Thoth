@@ -10,7 +10,9 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'mdeditor/', include('mdeditor.urls')),
     url(r'^article/', include('article.urls'), name='article'),
-    url(r'^about_me?$', Index.as_view({'get': 'about_me'}), name='about_me')
+    url(r'^about_me?$', Index.as_view({'get': 'about_me'}), name='about_me'),
+    url(r'^guestbook/', include('guestbook.urls'), name='guestbook'),
+    url(r'^pigeonhole?$', Index.as_view({'get': 'pigeonhole'}), name='pigeonhole')
 ]
 
 if settings.DEBUG:

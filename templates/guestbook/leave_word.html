@@ -1,0 +1,18 @@
+{% load static %}
+<div class="navlist">
+    <ul>
+        <li class="navcurrent"><a href="#top1">留言板</a></li>
+    </ul>
+</div>
+<div class="navtab">
+    <div id="leave_word">
+        <p><strong>来说点儿什么吧...</strong></p>
+        <p>
+            <textarea cols="60" rows="10" style="width: 99%; border: #e4e3e3 1px solid; padding: 2px"></textarea>
+        </p>
+        <p>
+            <input type="submit" class="submit" value="提交" onclick="leave_word();" maxlength="500">
+        </p>
+    </div>
+    <div id="guestbook"></div>
+</div>

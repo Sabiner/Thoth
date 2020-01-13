@@ -55,14 +55,13 @@ class ArticleService(object):
         detail_info = obj.to_dict()
 
         detail_info['content'] = '博文内容有待补充'
-        logger.info(f'content_path: {obj.content_path}')
+
         if os.path.exists(obj.content_path):
-            logger.info('path exists!')
             with open(obj.content_path, 'r') as f:
                 detail_info['content'] = markdown.markdown(f.read(), extensions=[
                     'markdown.extensions.extra',
                     'markdown.extensions.codehilite',
                     'markdown.extensions.toc',
                 ])
-        logger.info(f'detail_info: {detail_info}')
+
         return detail_info

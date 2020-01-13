@@ -9,17 +9,17 @@ function load_page() {
 }
 
 function load_recommend() {
-    let url = "article/get_latest_article";
+    let url = "/article/get_latest_article";
     $("#content").load(url, "");
 }
 
 function load_ranking_list() {
-    let url = "article/get_ranking_list";
+    let url = "/article/get_ranking_list";
     $("#ms-main").load(url, "");
 }
 
 function load_correlation_list() {
-    let url = "article/get_correlation";
+    let url = "/article/get_correlation";
     $("#correlation").load(url, "");
 }
 
@@ -28,7 +28,65 @@ function switch_tag(obj) {
     $(obj).attr("id", "topnav_current");
 }
 
+/**
+ * 关于我
+ */
 function about_me() {
-    let url = "about_me";
+    let url = "/about_me";
     $("article").load(url, "");
+}
+
+/**
+ * 加载留言板界面
+ */
+function message_board() {
+    $("article").load("/guestbook/message_board", "");
+    load_guest_book();
+}
+
+/**
+ * 归档
+ */
+function pigeonhole() {
+    let url = "/pigeonhole";
+    $("article").load(url, "");
+}
+
+/**
+ * 留言
+ */
+function leave_word() {
+    let message = $("textarea").val();
+    $.ajax({
+        type: 'POST',
+        url: "/guestbook/leave_word",
+        data: {
+            message: message
+        },
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+            console.log(data.message);
+            load_guest_book();
+        },
+        error: function (xhr,state,errorThrown) {
+            console.log(errorThrown);
+        }
+    });
+}
+
+/**
+ * 加载留言板最新内容
+ */
+function load_guest_book() {
+    $(function(){
+     $.ajax({
+            type: "GET",
+            url: "/guestbook/load_guest_book",
+            success:function(msg){
+                $("#guestbook").html(msg);
+            },
+            error:function(XMLHttpRequest, textStatus, thrownError){}
+        })
+    })
 }

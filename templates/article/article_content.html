@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="{% static 'css/md_github.css' %}">
 <script type="text/javascript" src="{% static 'js/up/jquery.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/up/js.js' %}"></script>
+<script src="{% static 'js/index/index.js' %}"></script>
 <body>
 <header>
     <div class="logo">
@@ -14,10 +15,10 @@
     </div>
     <nav id="topnav">
         <ul>
-            <a href="">首页</a>
-            <a href="#">归档</a>
-            <a href="#">关于我</a>
-            <a href="#">留言</a>
+            <a onclick="javascript: switch_tag(this)" href="" id="topnav_current">首页</a>
+            <a onclick="javascript: switch_tag(this)" href="javascript: pigeonhole();">归档</a>
+            <a onclick="javascript: switch_tag(this)" href="javascript: about_me();">关于我</a>
+            <a onclick="javascript: switch_tag(this)" href="javascript: message_board();">留言</a>
         </ul>
         <script src="{% static 'js/silder.js' %}"></script>
     </nav>
