@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import sys
 from rest_framework import viewsets
 from django.shortcuts import render, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -33,14 +34,18 @@ class GuestBookView(viewsets.ViewSet):
                 message = request.data.get('message').strip()
 
             if message:
-                GuestBook.objects.create(**dict(message=message))
+                GuestBook.objects.create(**dict(message=message, creator='匿名用户'))
             else:
                 result['code'] = 1
                 result['msg'] = '请填写内容'
         except Exception as e:
-            result['code'] = 1
-            result['msg'] = e.message
+            err = sys.exc_info()[0]
+            err_type, err_args = err, err.args
 
+            result['code'] = 1
+            result['msg'] = f'{err_type}: {err_args}'
+
+        logger.info(result)
         return HttpResponse(result)
 
     def load_guest_book(self, request):
@@ -51,12 +56,11 @@ class GuestBookView(viewsets.ViewSet):
         """
         response = dict(messages=[])
         try:
-            logger.info("coming in load guestbook")
             messages = GuestBook.objects.all().order_by('-create_at')[0: 10]
-            logger.info(messages)
+
             if messages:
                 response['messages'] = [i.to_dict() for i in messages]
         except Exception as e:
             response['messages'] = e.message
-        logger.info(response)
+
         return render(request, 'guestbook/guest_book.html', response)

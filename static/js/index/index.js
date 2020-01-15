@@ -63,10 +63,7 @@ function leave_word() {
         data: {
             message: message
         },
-        dataType: "json",
         success: function (data) {
-            console.log(data);
-            console.log(data.message);
             load_guest_book();
         },
         error: function (xhr,state,errorThrown) {
