@@ -40,16 +40,32 @@ function about_me() {
  * 加载留言板界面
  */
 function message_board() {
-    $("article").load("/guestbook/message_board", "");
-    load_guest_book();
+    $.ajax({
+        type: "GET",
+        url: "/guestbook/message_board",
+        success: function (msg) {
+            $("article").html(msg);
+            load_guest_book();
+        },
+        error: function (XMLHttpRequest, textStatus, thrownError) {
+        }
+    });
 }
 
 /**
  * 归档
  */
 function pigeonhole() {
-    let url = "/pigeonhole";
-    $("article").load(url, "");
+    $.ajax({
+        type: "GET",
+        url: "/pigeonhole",
+        success: function (msg) {
+            $("article").html(msg);
+            load_items_by_tag("Python");
+        },
+        error: function (XMLHttpRequest, textStatus, thrownError) {
+        }
+    });
 }
 
 /**
@@ -66,7 +82,7 @@ function leave_word() {
         success: function (data) {
             load_guest_book();
         },
-        error: function (xhr,state,errorThrown) {
+        error: function (xhr, state, errorThrown) {
             console.log(errorThrown);
         }
     });
@@ -76,14 +92,33 @@ function leave_word() {
  * 加载留言板最新内容
  */
 function load_guest_book() {
-    $(function(){
-     $.ajax({
-            type: "GET",
-            url: "/guestbook/load_guest_book",
-            success:function(msg){
-                $("#guestbook").html(msg);
-            },
-            error:function(XMLHttpRequest, textStatus, thrownError){}
-        })
-    })
+    $.ajax({
+        type: "GET",
+        url: "/guestbook/load_guest_book",
+        success: function (msg) {
+            $("#guestbook").html(msg);
+        },
+        error: function (XMLHttpRequest, textStatus, thrownError) {
+        }
+    });
+}
+
+/**
+ * 根据标签名称获取文章
+ * @param tag_name 标签名称
+ */
+function load_items_by_tag(tag_name) {
+    $.ajax({
+        type: 'GET',
+        url: "/pigeonhole/get_items_by_tag",
+        data: {
+            tag_name: tag_name
+        },
+        success: function (msg) {
+            $("#items_by_tag").html(msg);
+        },
+        error: function (xhr, state, errorThrown) {
+            console.log(errorThrown);
+        }
+    });
 }

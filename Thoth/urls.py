@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'^article/', include('article.urls'), name='article'),
     url(r'^about_me?$', Index.as_view({'get': 'about_me'}), name='about_me'),
     url(r'^guestbook/', include('guestbook.urls'), name='guestbook'),
-    url(r'^pigeonhole?$', Index.as_view({'get': 'pigeonhole'}), name='pigeonhole')
+    url(r'^pigeonhole/', include('pigeonhole.urls'), name='pigeonhole')
 ]
 
 if settings.DEBUG:

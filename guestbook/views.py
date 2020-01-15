@@ -61,6 +61,6 @@ class GuestBookView(viewsets.ViewSet):
             if messages:
                 response['messages'] = [i.to_dict() for i in messages]
         except Exception as e:
-            response['messages'] = e.message
+            response['messages'] = e.args
 
         return render(request, 'guestbook/guest_book.html', response)

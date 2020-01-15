@@ -13,6 +13,3 @@ class Index(viewsets.ViewSet):
 
     def about_me(self, request):
         return render(request, 'index/about_me.html')
-
-    def pigeonhole(self, request):
-        return render(request, 'index/pigeonhole.html')

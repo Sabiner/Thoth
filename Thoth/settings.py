@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'markdown_deux',
     'article',
     'guestbook',
+    'pigeonhole',
     'mdeditor'
 ]
 
