@@ -1,5 +1,6 @@
 # coding: utf-8
 
+from collections import Counter
 from django.shortcuts import render
 
 from rest_framework import viewsets
@@ -12,7 +13,11 @@ logger = load_logger()
 class PigeonholeView(viewsets.ViewSet):
 
     def get_page(self, request):
-        return render(request, 'pigeonhole/pigeonhole.html')
+        all_tags = self.get_all_tags()
+        response = dict(
+            all_tags=dict(all_tags)
+        )
+        return render(request, 'pigeonhole/pigeonhole.html', response)
 
     def get_items_by_tag(self, request):
         """
@@ -34,3 +39,17 @@ class PigeonholeView(viewsets.ViewSet):
         except Exception as e:
             logger.info(f'{e.args}')
         return render(request, 'pigeonhole/article_block.html', response)
+
+    def get_all_tags(self):
+        """
+        获取所有标签
+        :return:
+        """
+        tag_items = Article.objects.values("tag").all()
+        tmp = [item['tag'] for item in tag_items]
+
+        all_tags = []
+        for tags in tmp:
+            all_tags.extend([i.strip() for i in tags.split(',')])
+
+        return Counter(all_tags)
