@@ -18,10 +18,13 @@
 1. 从Github Clone下来源码后，进入项目目录下，运行如下指令：
 
     > docker build -t sabiner/thoth:v1 .
+    
     > docker run -d -it -p 8000:8000 --name thoth sabiner/thoth:v1 /bin/bash
 
 2. 进入容器，启动服务：
+
     > docker exec -it thoth /bin/bash
+    
     > python manage.py runserver 0.0.0.0:8000
 
     按住 Ctrl+P，点击Q，守护服务退出容器
