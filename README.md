@@ -23,6 +23,7 @@
 2. 进入容器，启动服务：
     > docker exec -it thoth /bin/bash
     > python manage.py runserver 0.0.0.0:8000
+
     按住 Ctrl+P，点击Q，守护服务退出容器
    
 3. 配置 Nginx 后访问 IP 地址：
