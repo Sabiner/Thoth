@@ -11,7 +11,7 @@ markdown2==2.3.8
 mysql-connector-python==8.0.16
 paramiko==2.5.0
 requests==2.6.0
-urllib3==1.10.2
+urllib3==1.24.2
 mysqlclient
 djangorestframework
 django-markdown-deux
