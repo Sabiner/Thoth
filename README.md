@@ -9,18 +9,24 @@
 
 |  技术  | 版本     |
 | :----------: | :-----------:  |
+|  CentOS  | 3.8     |
 |  Python  | 3.7.4     |
 |  Django    | 3.0    |
 
 ## 3. 使用
 
-1. 从Github Clone下来源码后，安装依赖包；
-2. 在Linux环境下执行如下指令（每次重启机器都要执行）:
+1. 从Github Clone下来源码后，进入项目目录下，运行如下指令：
 
-    > mkdir /var/run/uwsgi
-    
-    > uwsgi --ini uwsgi.ini
-    
-    后期会将这一步封装成一键脚本，或写入开机初始化。
+    > docker build -t sabiner/thoth:v1 .
+    > docker run -d -it -p 8000:8000 --name thoth sabiner/thoth:v1 /bin/bash
 
-3. 配置 Nginx 后访问 IP 地址；
+2. 进入容器，启动服务：
+    > docker exec -it thoth /bin/bash
+    > python manage.py runserver 0.0.0.0:8000
+    按住 Ctrl+P，点击Q，守护服务退出容器
+   
+3. 配置 Nginx 后访问 IP 地址：
+    
+    > nginx.conf proxy_pass http://0.0.0.0:8000
+
+
