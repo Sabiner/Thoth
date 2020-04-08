@@ -19,6 +19,7 @@ class Article(models.Model):
     description = models.TextField(max_length=400)
     content_path = MDTextField()
     image_path = models.CharField(max_length=50, null=True, blank=True)
+    pv_count = models.IntegerField()
 
     list_display = ('title', 'type', 'tag', 'create_at', 'creator', 'description', 'image_path')
 
@@ -38,7 +39,8 @@ class Article(models.Model):
             create_at=self.create_at.strftime(date_format),
             tag=self.tag,
             description=self.description,
-            image_path=self.image_path
+            image_path=self.image_path,
+            pv_count=self.pv_count
         )
 
     def save(self, force_insert=False, force_update=False, using=None,

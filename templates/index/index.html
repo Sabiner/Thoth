@@ -10,19 +10,19 @@
     <link href="{% static 'css/base.css' %}" rel="stylesheet">
     <link href="{% static 'css/index.css' %}" rel="stylesheet">
     <link href="{% static 'css/media.css' %}" rel="stylesheet">
+    <script type="text/javascript" src="{% static 'js/up/jquery.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/myfocus-2.0.4.min.js' %}"></script>
     <!--[if lt IE 9]>
         <script src="{% static 'js/modernizr.js' %}"></script>
     <![endif]-->
-    <script type="text/javascript" src="{% static 'js/up/jquery.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/up/js.js' %}"></script>
 </head>
 
 <body>
 <header>
     <div class="logo">
-        <div class="logo_l f_l"><a href="/"><img src="{% static 'images/logo.png' %}"></a></div>
-        <div class="logo_r f_r"><a href="/"><img src="{% static 'images/search.png' %}"></a></div>
+        <div class="logo_l f_l"><a href="/"><img src="{% static 'images/index/logo.jpg' %}"></a></div>
+        <div class="logo_r f_r"><a href="/"><img src="{% static 'images/index/search.jpg' %}"></a></div>
     </div>
     <nav id="topnav">
         <ul>
@@ -47,19 +47,19 @@
                 <div class="loading"></div>
                 <div class="pic">
                     <ul>
-                        <li><a href="#1"><img src="{% static 'images/1m.jpg' %}" /></a></li>
-                        <li><a href="#2"><img src="{% static 'images/2m.jpg' %}" /></a></li>
+                        <li><a href="#1"><img src="{% static 'images/index/rollwindow_01.jpg' %}" /></a></li>
+                        <li><a href="#2"><img src="{% static 'images/index/rollwindow_02.jpg' %}" /></a></li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="focustext f_r">
             <section class="ft01">
-                <h3><a href="/">魏无羡</a></h3>
+                <h3>魏无羡</h3>
                 <p>愿我魏无羡，能够一生锄奸扶弱，无愧于心</p>
             </section>
             <section class="ft02">
-                <h3><a href="/">蓝忘玑</a></h3>
+                <h3>蓝忘玑</h3>
                 <p>我想带一人，回云深不知处。带回去，藏起来</p>
             </section>
         </div>
@@ -80,7 +80,7 @@
                     <li><a class="rss" href="mailto:2267313059@qq.com">邮箱</a></li>
                     <li><a class="wx" onmouseover="tip.start(this)"
                            tips="<font color='#fff'>关注<b>Sabiner</b>微信账号</font><br><b>
-                           <img src='{% static 'images/ft-wx-s.png' %}'></b>">微信</a>
+                           <img src='{% static 'images/index/wechat_qrcode.jpg' %}'></b>">微信</a>
                     </li>
                     <div id="mjs:tip" class="tip" style="position:absolute;left:0;top:0;display:none;"></div>
                     <script>
@@ -145,21 +145,7 @@
             </div>
             <div class="ms-main" id="ms-main"></div>
         </div>
-        <div class="cloud">
-            <h3>标签</h3>
-            <ul>
-                <a href="/">Python</a>
-                <a href="/">MySQL</a>
-                <a href="/">数据结构</a>
-                <a href="/">算法</a>
-                <a href="/">Linux</a>
-                <a href="/">OpenStack</a>
-                <a href="/">协议</a>
-                <a href="/">网络</a>
-                <a href="/">BUG</a>
-                <a href="/">Other</a>
-            </ul>
-        </div>
+        <div class="cloud"><h3>标签</h3><ul></ul></div>
         <div class="tuwen" id="correlation"></div>
     </div>
 </article>

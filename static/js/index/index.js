@@ -6,6 +6,7 @@ function load_page() {
     load_recommend();           // 推荐
     load_ranking_list();        // 排行榜
     load_correlation_list();    // 相关列表
+    load_all_tag();             // 获取所有标签
 }
 
 function load_recommend() {
@@ -55,13 +56,13 @@ function message_board() {
 /**
  * 归档
  */
-function pigeonhole() {
+function pigeonhole(tag_name="Python") {
     $.ajax({
         type: "GET",
         url: "/pigeonhole",
         success: function (msg) {
             $("article").html(msg);
-            load_items_by_tag("Python");
+            load_items_by_tag(tag_name);
         },
         error: function (XMLHttpRequest, textStatus, thrownError) {
         }
@@ -116,6 +117,24 @@ function load_items_by_tag(tag_name) {
         },
         success: function (msg) {
             $("#items_by_tag").html(msg);
+        },
+        error: function (xhr, state, errorThrown) {
+            console.log(errorThrown);
+        }
+    });
+}
+
+/**
+ * 获取所有标签
+ */
+function load_all_tag() {
+    $.ajax({
+        type: 'GET',
+        url: "/pigeonhole/get_all_tag",
+        success: function (msg) {
+            Object.keys(msg).forEach(function (i) {
+                $("div.cloud ul").append("<a href=\"javascript: pigeonhole('" + i + "')\">" + i + "</a>")
+            });
         },
         error: function (xhr, state, errorThrown) {
             console.log(errorThrown);

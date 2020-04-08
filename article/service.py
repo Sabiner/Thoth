@@ -24,8 +24,7 @@ class ArticleService(object):
         获取访问量排行榜前 6 位
         :return: 博文集合
         """
-        # TODO: 完善访问量部分
-        top_list = Article.objects.all()[0: 6]
+        top_list = Article.objects.all().order_by('-pv_count', )[0: 6]
         return [i.to_dict() for i in top_list]
 
     def get_recommended_list(self):
@@ -63,5 +62,8 @@ class ArticleService(object):
                     'markdown.extensions.codehilite',
                     'markdown.extensions.toc',
                 ])
+
+        obj.pv_count += 1
+        obj.save()
 
         return detail_info

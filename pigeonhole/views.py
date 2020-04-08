@@ -1,7 +1,8 @@
 # coding: utf-8
 
+import json
 from collections import Counter
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 
 from rest_framework import viewsets
 from article.models import Article
@@ -13,7 +14,7 @@ logger = load_logger()
 class PigeonholeView(viewsets.ViewSet):
 
     def get_page(self, request):
-        all_tags = self.get_all_tags()
+        all_tags = self.__get_all_tags()
         response = dict(
             all_tags=dict(all_tags)
         )
@@ -40,7 +41,10 @@ class PigeonholeView(viewsets.ViewSet):
             logger.info(f'{e.args}')
         return render(request, 'pigeonhole/article_block.html', response)
 
-    def get_all_tags(self):
+    def get_all_tag(self, request):
+        return HttpResponse(json.dumps(dict(self.__get_all_tags())), content_type='application/json')
+
+    def __get_all_tags(self):
         """
         获取所有标签
         :return:
