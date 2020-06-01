@@ -47,6 +47,7 @@
     </div>
     <div class="blank"></div>
 </article>
+<div id="catalog" class="list-group" style="float: left; position: fixed; left: 20px; top: 245px;"></div>
 <footer>
     <div class="endfoot">
         <div class="ft-list f_r">
@@ -65,5 +66,16 @@
 
     <div id="tbox"><a id="togbook" href="/"></a> <a id="gotop" href="javascript:void(0)"></a></div>
 </footer>
-
 </body>
+
+<script>
+$(document).ready(function () {
+    $("article h2").each(function(index, element){
+        $('#catalog').append(
+            "<a class='list-group-item' href='#" + $(element).attr('id')
+            + "'><i class='fa fa-chevron-right'></i>&nbsp;"
+            + $(element).text() + "</a>"
+        );
+    });
+});
+</script>
