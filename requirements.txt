@@ -7,7 +7,7 @@ jsonpatch==1.2
 jsonpointer==1.9
 Markdown==3.1.1
 Markdown-Editor==1.0.3
-markdown2==2.3.8
+markdown2==2.4.0
 mysql-connector-python==8.0.16
 paramiko==2.5.0
 requests==2.6.0
